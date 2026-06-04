@@ -1,9 +1,9 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "jsdevart/odoo-mcp-server",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "Odoo mcp server.",
+    "keywords": ["laravel", "framework", "odoo", "odoo-mcp"],
     "license": "MIT",
     "require": {
         "php": "^8.3",
