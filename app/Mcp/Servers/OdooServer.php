@@ -24,6 +24,7 @@ use App\Mcp\Tools\OdooPingTool;
 use App\Mcp\Tools\PostMoveTool;
 use App\Mcp\Tools\RegisterPaymentTool;
 use App\Mcp\Tools\RenameJournalTool;
+use App\Mcp\Tools\ReclassifyVendorBillToCreditorTool;
 use App\Mcp\Tools\RenamePartnerTool;
 use App\Mcp\Tools\UpdateInvoiceLineTool;
 use App\Mcp\Tools\UpdatePartnerRolesTool;
@@ -66,6 +67,7 @@ class OdooServer extends Server
         AttachFileTool::class,
         ImportCfdiXmlTool::class,
         CreateJournalEntryTool::class,
+        ReclassifyVendorBillToCreditorTool::class,
         PostMoveTool::class,
         CreatePartnerTool::class,
         CreateVendorBillTool::class,
