@@ -27,13 +27,15 @@ class CreatePartnerTool extends Tool
             $countryCode = $request->get('country_code');
             $isVendor = $request->get('is_vendor');
             $isCustomer = $request->get('is_customer');
+            $isCompany = $request->get('is_company');
 
             $isVendor = $isVendor === null ? true : (bool) $isVendor;
             $isCustomer = $isCustomer === null ? false : (bool) $isCustomer;
+            $isCompany = $isCompany === null ? true : (bool) $isCompany;
 
             $vals = [
                 'name' => $name,
-                'is_company' => true,
+                'is_company' => $isCompany,
                 'supplier_rank' => $isVendor ? 1 : 0,
                 'customer_rank' => $isCustomer ? 1 : 0,
             ];
@@ -93,6 +95,8 @@ class CreatePartnerTool extends Tool
                 ->description('Whether this partner is a vendor / supplier. Defaults to true.'),
             'is_customer' => $schema->boolean()
                 ->description('Whether this partner is a customer. Defaults to false.'),
+            'is_company' => $schema->boolean()
+                ->description('Whether this partner is a company. Defaults to true. Set false for individuals / natural persons.'),
         ];
     }
 }

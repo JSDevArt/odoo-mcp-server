@@ -48,7 +48,7 @@ class ListInvoicesTool extends Tool
             }
 
             $invoices = $odoo->executeKw('account.move', 'search_read', [$domain], [
-                'fields' => ['name', 'partner_id', 'invoice_date', 'amount_total', 'amount_residual', 'state', 'move_type', 'ref', 'currency_id'],
+                'fields' => ['name', 'partner_id', 'invoice_date', 'invoice_date_due', 'amount_total', 'amount_residual', 'state', 'move_type', 'ref', 'currency_id'],
                 'order' => 'invoice_date desc, id desc',
                 'limit' => $limit,
             ]);

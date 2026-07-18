@@ -1,10 +1,11 @@
-FROM php:8.3-fpm-alpine
+FROM php:8.4-fpm-alpine
 
 RUN apk add --no-cache \
     curl \
     libpng-dev \
     oniguruma-dev \
     libxml2-dev \
+    sqlite-dev \
     zip \
     unzip
 

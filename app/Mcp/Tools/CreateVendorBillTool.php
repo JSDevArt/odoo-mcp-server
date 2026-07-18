@@ -21,6 +21,7 @@ class CreateVendorBillTool extends Tool
             $partnerId = (int) $request->get('partner_id');
             $invoiceDate = (string) $request->get('invoice_date');
             $journalId = $request->get('journal_id');
+            $invoiceDateDue = $request->get('invoice_date_due');
             $ref = $request->get('ref');
             $lines = $request->get('lines');
 
@@ -29,6 +30,9 @@ class CreateVendorBillTool extends Tool
             }
             if (! preg_match('/^\d{4}-\d{2}-\d{2}$/', $invoiceDate)) {
                 return Response::error('invoice_date must be in YYYY-MM-DD format.');
+            }
+            if ($invoiceDateDue !== null && $invoiceDateDue !== '' && ! preg_match('/^\d{4}-\d{2}-\d{2}$/', (string) $invoiceDateDue)) {
+                return Response::error('invoice_date_due must be in YYYY-MM-DD format when provided.');
             }
             if (! is_array($lines) || count($lines) === 0) {
                 return Response::error('At least 1 line is required.');
@@ -100,6 +104,9 @@ class CreateVendorBillTool extends Tool
             if (is_string($ref) && trim($ref) !== '') {
                 $moveVals['ref'] = trim($ref);
             }
+            if ($invoiceDateDue !== null && $invoiceDateDue !== '') {
+                $moveVals['invoice_date_due'] = (string) $invoiceDateDue;
+            }
 
             $invoiceId = $odoo->executeKw('account.move', 'create', [$moveVals]);
             if (! is_int($invoiceId)) {
@@ -115,6 +122,7 @@ class CreateVendorBillTool extends Tool
                 'invoice_id' => $invoiceId,
                 'invoice_name' => $after[0]['name'] ?? null,
                 'state' => $after[0]['state'] ?? null,
+                'invoice_date_due' => $invoiceDateDue ?: null,
                 'partner' => isset($after[0]['partner_id']) && is_array($after[0]['partner_id']) ? $after[0]['partner_id'][1] : null,
                 'journal' => isset($after[0]['journal_id']) && is_array($after[0]['journal_id']) ? $after[0]['journal_id'][1] : null,
                 'amount_untaxed' => $after[0]['amount_untaxed'] ?? null,
@@ -137,6 +145,8 @@ class CreateVendorBillTool extends Tool
             'invoice_date' => $schema->string()
                 ->description('Bill date in YYYY-MM-DD format.')
                 ->required(),
+            'invoice_date_due' => $schema->string()
+                ->description('Optional bill due date in YYYY-MM-DD format.'),
             'journal_id' => $schema->integer()
                 ->description('Optional purchase journal id. Defaults to the first active purchase journal.'),
             'ref' => $schema->string()

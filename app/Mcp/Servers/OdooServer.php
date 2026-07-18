@@ -3,11 +3,13 @@
 namespace App\Mcp\Servers;
 
 use App\Mcp\Tools\ArchivePartnerTool;
+use App\Mcp\Tools\AttachFileTool;
 use App\Mcp\Tools\CreateJournalEntryTool;
 use App\Mcp\Tools\CreatePartnerTool;
 use App\Mcp\Tools\CreateVendorBillTool;
 use App\Mcp\Tools\DeleteInvoiceTool;
 use App\Mcp\Tools\DeletePaymentTool;
+use App\Mcp\Tools\ForceDeleteInvoiceTool;
 use App\Mcp\Tools\GetCompanyInfoTool;
 use App\Mcp\Tools\ImportCfdiXmlTool;
 use App\Mcp\Tools\ListAccountsTool;
@@ -24,6 +26,7 @@ use App\Mcp\Tools\RegisterPaymentTool;
 use App\Mcp\Tools\RenameJournalTool;
 use App\Mcp\Tools\RenamePartnerTool;
 use App\Mcp\Tools\UpdateInvoiceLineTool;
+use App\Mcp\Tools\UpdatePartnerRolesTool;
 use Laravel\Mcp\Server;
 use Laravel\Mcp\Server\Attributes\Instructions;
 use Laravel\Mcp\Server\Attributes\Name;
@@ -59,12 +62,15 @@ class OdooServer extends Server
         RegisterPaymentTool::class,
         DeleteInvoiceTool::class,
         DeletePaymentTool::class,
+        ForceDeleteInvoiceTool::class,
+        AttachFileTool::class,
         ImportCfdiXmlTool::class,
         CreateJournalEntryTool::class,
         PostMoveTool::class,
         CreatePartnerTool::class,
         CreateVendorBillTool::class,
         UpdateInvoiceLineTool::class,
+        UpdatePartnerRolesTool::class,
     ];
 
     protected array $resources = [
