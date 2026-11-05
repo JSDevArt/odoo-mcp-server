@@ -6,6 +6,7 @@ use App\Mcp\Tools\ArchivePartnerTool;
 use App\Mcp\Tools\AttachFileTool;
 use App\Mcp\Tools\CreateJournalEntryTool;
 use App\Mcp\Tools\CreatePartnerTool;
+use App\Mcp\Tools\CreateVendorBillCustomFieldTool;
 use App\Mcp\Tools\CreateVendorBillTool;
 use App\Mcp\Tools\DeleteInvoiceTool;
 use App\Mcp\Tools\DeletePaymentTool;
@@ -22,12 +23,14 @@ use App\Mcp\Tools\ListProductsTool;
 use App\Mcp\Tools\ListTaxesTool;
 use App\Mcp\Tools\OdooPingTool;
 use App\Mcp\Tools\PostMoveTool;
+use App\Mcp\Tools\ReadVendorBillCustomFieldsTool;
 use App\Mcp\Tools\RegisterPaymentTool;
 use App\Mcp\Tools\RenameJournalTool;
 use App\Mcp\Tools\ReclassifyVendorBillToCreditorTool;
 use App\Mcp\Tools\RenamePartnerTool;
 use App\Mcp\Tools\UpdateInvoiceLineTool;
 use App\Mcp\Tools\UpdatePartnerRolesTool;
+use App\Mcp\Tools\UpdateVendorBillCustomFieldsTool;
 use Laravel\Mcp\Server;
 use Laravel\Mcp\Server\Attributes\Instructions;
 use Laravel\Mcp\Server\Attributes\Name;
@@ -73,6 +76,9 @@ class OdooServer extends Server
         CreateVendorBillTool::class,
         UpdateInvoiceLineTool::class,
         UpdatePartnerRolesTool::class,
+        CreateVendorBillCustomFieldTool::class,
+        ReadVendorBillCustomFieldsTool::class,
+        UpdateVendorBillCustomFieldsTool::class,
     ];
 
     protected array $resources = [

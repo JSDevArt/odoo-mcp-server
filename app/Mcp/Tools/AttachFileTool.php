@@ -64,7 +64,7 @@ class AttachFileTool extends Tool
                 'res_model' => $resModel,
                 'res_id' => $resId,
                 'type' => 'binary',
-                'datas' => $data,
+                'raw' => $data, // Odoo 19.3+: 'datas' field removed; binary 'raw' takes base64 over RPC
                 'mimetype' => $mimetype,
             ]]);
 

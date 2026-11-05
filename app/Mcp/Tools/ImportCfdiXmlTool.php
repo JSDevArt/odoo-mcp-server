@@ -79,7 +79,7 @@ class ImportCfdiXmlTool extends Tool
                 'res_model' => 'account.move',
                 'res_id' => $invoiceId,
                 'type' => 'binary',
-                'datas' => base64_encode($xml),
+                'raw' => base64_encode($xml), // Odoo 19.3+: 'datas' field removed
                 'mimetype' => 'application/xml',
             ]]);
 
